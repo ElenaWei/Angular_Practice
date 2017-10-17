@@ -1,0 +1,39 @@
+<div *ngIf="product" xmlns="http://www.w3.org/1999/html">
+  <h2 class="details">Details about the {{product.name}}</h2>
+
+  <div class="context">
+    <label>id: </label>{{product.id}}<br/>
+    <label>name: </label>{{product.name}}<br/>
+    <label>description: </label>{{product.description}}<br/>
+    <label>price: </label>{{product.price}}<br/>
+    <label>condition: </label>{{product.condition}}<br/>
+    <label>category: </label>{{product.category}}
+  </div>
+  <br>
+
+  <div class="operations">
+    <button (click)="createProduct()">Create</button>
+    <button (click)="modifyProduct()">Modify</button>
+    <button (click)="requestDelete()">Delete</button>
+    <button (click)="addToCart(product)">Add To Cart</button>
+    <div *ngIf="modify">
+      <label>id: </label>
+      <input [(ngModel)]="product.id"><br/>
+      <label>name: </label>
+      <input [(ngModel)]="product.name"><br/>
+      <label>description: </label>
+      <input [(ngModel)]="product.description"><br/>
+      <label>price: </label>
+      <input [(ngModel)]="product.price"><br/>
+      <label>condition: </label>
+      <select [(ngModel)]="product.condition">
+        <option *ngFor="let c of conditions" [value]="c">
+          {{getAsString(c)}}
+        </option>
+      </select><br/>
+      <label>category:</label>
+      <input [(ngModel)]="product.category"><br/>
+    </div>
+
+  </div>
+</div>
