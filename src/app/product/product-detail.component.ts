@@ -1,7 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Product, Condition} from './product';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Product} from './product';
 import {CartService} from '../cart/cart.service';
-
+import {ActivatedRoute, ParamMap} from "@angular/router";
+import {Location} from '@angular/common';
+import {ProductService} from "./product.service";
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-product-detail',
@@ -25,10 +28,8 @@ import {CartService} from '../cart/cart.service';
     }
   `]
 })
-export class ProductDetailComponent {
+export class ProductDetailComponent implements OnInit{
   modify = false;
-  create = false;
-  conditions = Condition;
   @Input()
   product: Product;
   @Output()
@@ -40,13 +41,20 @@ export class ProductDetailComponent {
   modifyProduct() {
     this.modify = true;
   }
-  createProduct() {
-    this.create = true;
+  constructor(
+    private cartService: CartService,
+    private productService: ProductService,
+    private route: ActivatedRoute,
+    private location: Location
+  ) {}
+  ngOnInit(): void {
+    this.route.paramMap
+      .switchMap((params: ParamMap)=> this.productService.getProduct(+params.get('id')))
+      .subscribe(product => this.product = product);
   }
-  getAsString(condition: Condition) {
-    return Condition[condition];
+  goBack(): void {
+    this.location.back();
   }
-  constructor(private cartService: CartService) {}
   addToCart(product: Product) {
     this.cartService.addProduct(product);
   }

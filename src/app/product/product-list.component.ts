@@ -1,29 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from './product';
 import {ProductService} from './product.service';
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-product-list',
-  template: `
-    <h1>{{title}}</h1>
-    <h2>Products</h2>
-    <ul class = "products">
-      <li *ngFor = "let p of products"
-          [class.selected]= "p === selectedProduct"
-          (click) = "onSelect(p)">
-        <!--each product goes here -->
-        <span class = "badge">{{p.id}}</span>{{p.name}}
-      </li>
-    </ul>
-    <app-product-detail [product]="selectedProduct" (deletRequest)="deleteProduct($event)" ></app-product-detail>
-  `,
-  styleUrls: ['./product.css']
+  templateUrl: './products.html',
+  styleUrls: ['./products.css']
 })
 export class ProductListComponent implements OnInit {
-  title: 'List of products';
+  //title: 'List of products';
   products: Product[];
   selectedProduct: Product;
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     this.getProducts();
   }
@@ -33,7 +26,10 @@ export class ProductListComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts().then(products => this.products = products);
   }
-  deleteProduct(product: Product) {
-        this.products.splice(this.products.indexOf(product), 1);
+  deleteProduct(product: Product): void {
+    this.productService.deleteProduct(product);
+  }
+  gotoDetail(){
+    this.router.navigate(['/detail', this.selectedProduct.id]);
   }
 }

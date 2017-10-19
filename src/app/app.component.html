@@ -2,14 +2,18 @@
 
 <div class = "app">
   <h1>{{title}}</h1>
-  <div style="float: left">
-    <app-product-list></app-product-list>
-    <app-create-product></app-create-product>
+  <div>
+    <!--<app-product-list></app-product-list>-->
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/products" routerLinkActive="active">Products</a>
+      <a routerLink="/cart" routerLinkActive="active">Cart</a>
+      <a routerLink="/creation" routerLinkActive="active">Creation</a>
+    </nav>
+    <router-outlet></router-outlet>
+    <!--<app-create-product></app-create-product>-->
+    <!--<app-cart-list></app-cart-list>-->
   </div>
-  <div style="position: relative">
-    <app-cart-list></app-cart-list>
-  </div>
-</div>
 
 
 

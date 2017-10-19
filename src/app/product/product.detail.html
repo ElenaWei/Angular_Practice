@@ -10,9 +10,8 @@
     <label>category: </label>{{product.category}}
   </div>
   <br>
-
+  <button (click)="goBack()">Back</button><br>
   <div class="operations">
-    <button (click)="createProduct()">Create</button>
     <button (click)="modifyProduct()">Modify</button>
     <button (click)="requestDelete()">Delete</button>
     <button (click)="addToCart(product)">Add To Cart</button>
@@ -27,9 +26,9 @@
       <input [(ngModel)]="product.price"><br/>
       <label>condition: </label>
       <select [(ngModel)]="product.condition">
-        <option *ngFor="let c of conditions" [value]="c">
-          {{getAsString(c)}}
-        </option>
+        <option>New</option>
+        <option>Used</option>
+        <option>Discontinued</option>
       </select><br/>
       <label>category:</label>
       <input [(ngModel)]="product.category"><br/>

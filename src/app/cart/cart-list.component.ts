@@ -5,7 +5,7 @@ import {CartService} from './cart.service';
 @Component({
   selector: 'app-cart-list',
   template: `
-    <div *ngIf="carts" class = "cart">
+    <div class = "cart">
       <h2 class="cart-list">View of your cart</h2>
       <table class="cartDetails">
         <tr >
@@ -28,9 +28,7 @@ import {CartService} from './cart.service';
   `,
   styles: [`
     .cart {
-      float: right;
       width: 50%;
-      margin: 100px;
     }
 
     .cart-list {
