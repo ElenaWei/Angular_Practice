@@ -11,6 +11,7 @@ import {ProductService} from '../product/product.service';
 export class DashboardComponent implements OnInit{
   products: Product[] = [];
   constructor(private productService: ProductService) {}
+
   ngOnInit(): void {
     this.productService.getProducts()
       .then(products => this.products = products.slice(1, 5));

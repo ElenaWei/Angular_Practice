@@ -1,6 +1,5 @@
 <div *ngIf="product" xmlns="http://www.w3.org/1999/html">
   <h2 class="details">Details about the {{product.name}}</h2>
-
   <div class="context">
     <label>id: </label>{{product.id}}<br/>
     <label>name: </label>{{product.name}}<br/>
@@ -13,7 +12,7 @@
   <button (click)="goBack()">Back</button><br>
   <div class="operations">
     <button (click)="modifyProduct()">Modify</button>
-    <button (click)="requestDelete()">Delete</button>
+    <!--<button (click)="requestDelete()">Delete</button>-->
     <button (click)="addToCart(product)">Add To Cart</button>
     <div *ngIf="modify">
       <label>id: </label>
@@ -33,6 +32,5 @@
       <label>category:</label>
       <input [(ngModel)]="product.category"><br/>
     </div>
-
   </div>
 </div>

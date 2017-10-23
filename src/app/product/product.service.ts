@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Product} from './product';
 import {PRODUCTS} from './mock-products';
 import {Observable} from "rxjs/Observable";
+import {HttpClientModule} from "@angular/common/http";
 
 @Injectable()
 export class ProductService {
@@ -9,6 +10,9 @@ export class ProductService {
   // getProducts(): Observable<Product[]> {
   //   return Observable.of(PRODUCTS);
   // }
+  // private productsUrl = 'api/products';
+   constructor(private http: HttpClientModule) {}
+
   deleteProduct(product: Product): void {
     PRODUCTS.splice(PRODUCTS.indexOf(product), 1);
   }

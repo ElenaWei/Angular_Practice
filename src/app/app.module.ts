@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { AppComponent } from './app.component';
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ProductListComponent} from './product/product-list.component';
 import {ProductDetailComponent} from './product/product-detail.component';
 import {ProductService} from './product/product.service';
@@ -11,6 +12,8 @@ import {CalculatePipe} from './cart/cart.pipe';
 import {DashboardComponent} from './routing/dashboard.component';
 import {AppRoutingModule} from "./routing/app-routing.module";
 import {CreationComponent} from "./creation/creation.component";
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import {CreationComponent} from "./creation/creation.component";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [ProductService, CartService, Validators],
   bootstrap: [AppComponent]

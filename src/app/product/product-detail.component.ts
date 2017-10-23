@@ -9,35 +9,18 @@ import 'rxjs/add/operator/switchMap';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product.detail.html',
-  styles: [`
-    .details {
-      font-size: 20pt;
-      width: 450px;
-      color: blue;
-    }
-
-    .context {
-      font-size: 16pt;
-      border: 1px solid black;
-      width: 300px;
-    }
-
-    .operations {
-      font-size: 18pt;
-      color: red;
-    }
-  `]
+  styleUrls: ['./product.detail.css']
 })
 export class ProductDetailComponent implements OnInit{
   modify = false;
-  @Input()
+  //@Input()
   product: Product;
-  @Output()
-  deletRequest = new EventEmitter<Product>();
-  requestDelete() {
-    this.deletRequest.emit(this.product);
-    this.product = null;
-  }
+  //@Output()
+  // deletRequest = new EventEmitter<Product>();
+  // requestDelete() {
+  //   this.deletRequest.emit(this.product);
+  //   this.product = null;
+  // }
   modifyProduct() {
     this.modify = true;
   }
@@ -48,9 +31,10 @@ export class ProductDetailComponent implements OnInit{
     private location: Location
   ) {}
   ngOnInit(): void {
+    //this.route.paramMap.subscribe(p=> console.log(p));
     this.route.paramMap
       .switchMap((params: ParamMap)=> this.productService.getProduct(+params.get('id')))
-      .subscribe(product => this.product = product);
+      .subscribe(product => this.product = product)
   }
   goBack(): void {
     this.location.back();
